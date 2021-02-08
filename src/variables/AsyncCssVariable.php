@@ -28,64 +28,55 @@ use craft\helpers\Template;
  * @package   AsyncCss
  * @since     1.0.0
  */
-class AsyncCssVariable
-{
-    // Public Methods
-    // =========================================================================
+class AsyncCssVariable {
+  // Public Methods
+  // =========================================================================
 
-    /**
-     * Whatever you want to output to a Twig template can go into a Variable method.
-     * You can have as many variable functions as you want.  From any Twig template,
-     * call it like this:
-     *
-     *     {{ craft.asyncCss.exampleVariable }}
-     *
-     * Or, if your variable requires parameters from Twig:
-     *
-     *     {{ craft.asyncCss.exampleVariable(twigValue) }}
-     *
-     * @param null $optional
-     * @return string
-     */
-    public function load($path = false, $async = true, $cached = true) {
-        if(!$path || !file_exists(CRAFT_BASE_PATH . '/web/' . $path)) {
-            return TEMPLATE::raw("<!-- WARNING: AsyncCss File not found ($path) -->");
-        }
+  /**
+   * Returns a <link> tag for css files. Can also include a ?v=mtime query string
+   * and a <noscript> fallback.
+   * @param null $path
+   * @param bool $async
+   * @param bool $cached
+   * @return string
+   */
+  public function load($path = false, $async = true, $cached = true) {
+    // Alert in the source if theres no file
+    if(!$path || !file_exists(CRAFT_BASE_PATH . '/web/' . $path))
+      return TEMPLATE::raw("<!-- WARNING: AsyncCss File not fouit lnd ($path) -->");
 
-        $attributes = ['rel' => 'stylesheet'];
-        $lines = [
-            'file' => '',
-            'noscript' => ''
-        ];
+    // Base attributes
+    $rel = ['rel' => 'stylesheet'];
+    $media = [];
 
-        $path = ltrim($path, '/');
+    $lines = [];
 
-        if($cached) {
-            if(file_exists(CRAFT_BASE_PATH . '/web/' . $path)) {
-                $path = $path . '?v=' .filemtime(CRAFT_BASE_PATH . '/web/' . $path);
-            }
-        }
+    // Clean up the path if necessary
+    $path = ltrim($path, '/');
 
-        if($async) {
-            $lines['noscript'] = "<noscript>" . HTML::cssFile($path, $attributes) . "</noscript>";
-            $attributes = array_merge([
-                'media' => 'print',
-                'onload' => "this.media='all'"
-            ], $attributes);
-        }
-
-        $lines['file'] = HTML::cssFile($path, $attributes);
-
-        return TEMPLATE::raw(implode("\r\n", $lines));
+    // Add a version query string.
+    if($cached) {
+      if(file_exists(CRAFT_BASE_PATH . '/web/' . $path)) {
+        $path = $path . '?v=' .filemtime(CRAFT_BASE_PATH . '/web/' . $path);
+      }
     }
 
-    public function addClass($class) {
-        $options = ['class' => ['persistent' => 'initial']];
-        return Html::addCssClass($options, ['persistent' => 'override']);
+    // Include the media attribute if async
+    if($async) {
+      $media = [
+        'media' => 'print',
+        'onload' => htmlspecialchars("this.media='all'"),
+      ];
     }
+
+    // Add the base script file
+    $lines[] = HTML::cssFile($path, array_merge($rel, $media));
+
+    // <noscript> fallback
+    if($async) {
+      $lines[] = HTML::cssFile($path, array_merge($rel, ['noscript' => true]));
+    }
+
+    return TEMPLATE::raw(HTML::decode(implode("\r\n", $lines)));
+  }
 }
-
-
-// may 31st or june
-// Segment with canadian teams with individual
-// Us teams with other thing

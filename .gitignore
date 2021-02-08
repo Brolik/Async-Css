@@ -18,6 +18,7 @@
 .idea
 .project
 .settings
+.editorconfig
 *.esproj
 *.sublime-workspace
 *.sublime-project

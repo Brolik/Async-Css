@@ -11,8 +11,9 @@
         "async css"
     ],
     "support": {
-        "docs": "???",
-        "issues": "???"
+        "docs": "https://github.com/Brolik/Async-Css/blob/master/README.md",
+        "issues": "https://github.com/Brolik/Async-Css/issues?state=open",
+        "source": "https://github.com/Brolik/Async-Css"
     },
     "license": "MIT",
     "authors": [
@@ -34,8 +35,7 @@
         "handle": "async-css",
         "developer": "Jassok",
         "developerUrl": "http://brolik.com",
-        "documentationUrl": "???",
-        "changelogUrl": "???",
+        "documentationUrl": "https://github.com/Brolik/Async-Css/blob/master/README.md",
         "class": "brolik\\asynccss\\AsyncCss"
     }
 }
