@@ -68,6 +68,9 @@ class AsyncCssVariable {
         'onload' => htmlspecialchars("this.media='all'"),
       ];
     }
+    
+    // Re-add the /
+    $path = '/'.$path;
 
     // Add the base script file
     $lines[] = HTML::cssFile($path, array_merge($rel, $media));
