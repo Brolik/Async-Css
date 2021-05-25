@@ -18,13 +18,13 @@ To install the plugin, follow these instructions.
 
 2. Then tell Composer to load the plugin:
 
-        composer require /async-css
+        composer require brolik/async-css
 
 3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Async Css.
 
 ## Async Css Overview
 
-Includes, and adds a version to css files for async loading with a no script fall back. 
+Includes, and adds a version to css files for async loading with a no script fall back. Css files will only be included once per page.
 
 ## Using Async Css
 

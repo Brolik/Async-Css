@@ -1,1 +1,26 @@
-{"pluginName":"Async Css","pluginDescription":"Asynchronously load css","pluginVersion":"1.0.0","pluginAuthorName":"Jassok","pluginVendorName":"@brolik","pluginAuthorUrl":"http://brolik.com","pluginAuthorGithub":"","codeComments":"yes","pluginComponents":["twigextensions"],"consolecommandName":"","controllerName":"","cpsectionName":"","elementName":"","fieldName":"","modelName":"","purchasableName":"","recordName":"","serviceName":"","taskName":"","utilityName":"","widgetName":"","apiVersion":"api_version_3_0"}
+{
+  "pluginName": "Async Css",
+  "pluginDescription": "Asynchronously load css",
+  "pluginVersion": "1.0.2",
+  "pluginAuthorName": "Jassok",
+  "pluginVendorName": "@brolik",
+  "pluginAuthorUrl": "http://brolik.com",
+  "pluginAuthorGithub": "",
+  "codeComments": "yes",
+  "pluginComponents": [
+    "twigextensions"
+  ],
+  "consolecommandName": "",
+  "controllerName": "",
+  "cpsectionName": "",
+  "elementName": "",
+  "fieldName": "",
+  "modelName": "",
+  "purchasableName": "",
+  "recordName": "",
+  "serviceName": "",
+  "taskName": "",
+  "utilityName": "",
+  "widgetName": "",
+  "apiVersion": "api_version_3_0"
+}

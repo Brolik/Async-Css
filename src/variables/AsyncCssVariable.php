@@ -29,6 +29,8 @@ use craft\helpers\Template;
  * @since     1.0.0
  */
 class AsyncCssVariable {
+  public $sheetsOnPage = [];
+
   // Public Methods
   // =========================================================================
 
@@ -44,6 +46,14 @@ class AsyncCssVariable {
     // Alert in the source if theres no file
     if(!$path || !file_exists(CRAFT_BASE_PATH . '/web/' . $path))
       return TEMPLATE::raw("<!-- WARNING: AsyncCss File not fouit lnd ($path) -->");
+
+    // Check if the sheet has already been included
+    if(in_array(CRAFT_BASE_PATH . '/web/' . $path, $this->sheetsOnPage))
+      return false;
+
+    // Add the sheet to the list
+    $this->sheetsOnPage[] = CRAFT_BASE_PATH . '/web/' . $path;
+
 
     // Base attributes
     $rel = ['rel' => 'stylesheet'];
@@ -68,7 +78,7 @@ class AsyncCssVariable {
         'onload' => htmlspecialchars("this.media='all'"),
       ];
     }
-    
+
     // Re-add the /
     $path = '/'.$path;
 
