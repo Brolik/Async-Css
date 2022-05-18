@@ -1,41 +1,42 @@
 {
-    "name": "brolik/async-css",
-    "description": "Asynchronously load css",
-    "type": "craft-plugin",
-    "version": "1.0.2",
-    "keywords": [
-        "craft",
-        "cms",
-        "craftcms",
-        "craft-plugin",
-        "async css"
-    ],
-    "support": {
-        "docs": "https://github.com/Brolik/Async-Css/blob/master/README.md",
-        "issues": "https://github.com/Brolik/Async-Css/issues?state=open",
-        "source": "https://github.com/Brolik/Async-Css"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jassok",
-            "homepage": "http://brolik.com"
-        }
-    ],
-    "require": {
-        "craftcms/cms": "^3.0.0"
-    },
-    "autoload": {
-        "psr-4": {
-          "brolik\\asynccss\\": "src/"
-        }
-    },
-    "extra": {
-        "name": "Async Css",
-        "handle": "async-css",
-        "developer": "Jassok",
-        "developerUrl": "http://brolik.com",
-        "documentationUrl": "https://github.com/Brolik/Async-Css/blob/master/README.md",
-        "class": "brolik\\asynccss\\AsyncCss"
+  "name": "brolik/async-css",
+  "description": "Asynchronously load css",
+  "type": "craft-plugin",
+  "version": "1.0.3",
+  "keywords": [
+    "craft",
+    "cms",
+    "craftcms",
+    "craft-plugin",
+    "async css"
+  ],
+  "support": {
+    "docs": "https://github.com/Brolik/Async-Css/blob/master/README.md",
+    "issues": "https://github.com/Brolik/Async-Css/issues?state=open",
+    "source": "https://github.com/Brolik/Async-Css"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jassok",
+      "homepage": "http://brolik.com"
     }
+  ],
+  "require": {
+    "php": "^7.2.5|^8.0",
+    "craftcms/cms": "^3.0|^4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "brolik\\asynccss\\": "src/"
+    }
+  },
+  "extra": {
+    "name": "Async Css",
+    "handle": "async-css",
+    "developer": "Jassok",
+    "developerUrl": "http://brolik.com",
+    "documentationUrl": "https://github.com/Brolik/Async-Css/blob/master/README.md",
+    "class": "brolik\\asynccss\\AsyncCss"
+  }
 }
