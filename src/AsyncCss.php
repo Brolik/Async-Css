@@ -57,21 +57,21 @@ class AsyncCss extends \craft\base\Plugin
      *
      * @var string
      */
-    public string $schemaVersion = '1.0.2-beta';
+    public $schemaVersion = '1.0.4-beta';
 
     /**
      * Set to `true` if the plugin should have a settings view in the control panel.
      *
      * @var bool
      */
-    public bool $hasCpSettings = false;
+    public $hasCpSettings = false;
 
     /**
      * Set to `true` if the plugin should have its own section (main nav item) in the control panel.
      *
      * @var bool
      */
-    public bool $hasCpSection = false;
+    public $hasCpSection = false;
 
     // Public Methods
     // =========================================================================
