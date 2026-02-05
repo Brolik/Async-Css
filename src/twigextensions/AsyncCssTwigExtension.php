@@ -1,6 +1,6 @@
 <?php
 /**
- * Async Css plugin for Craft CMS 3.x
+ * Async Css plugin for Craft CMS 5.x
  *
  * Asynchronously load css
  *
@@ -47,7 +47,7 @@ class AsyncCssTwigExtension extends AbstractExtension
      * Converts a string to a css class friendly pattern:
      *
      *      {{ 'something' | toClass }}
-     * 
+     *
      * @return array
      */
     public function getFilters() {

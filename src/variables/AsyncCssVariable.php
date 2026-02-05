@@ -1,6 +1,6 @@
 <?php
 /**
- * Async Css plugin for Craft CMS 3.x
+ * Async Css plugin for Craft CMS 5.x
  *
  * Asynchronously load css
  *
@@ -43,16 +43,19 @@ class AsyncCssVariable {
    * @return string
    */
   public function load($path = false, $async = true, $cached = true) {
-    // Alert in the source if theres no file
-    if(!$path || !file_exists(CRAFT_BASE_PATH . '/web/' . $path))
-      return TEMPLATE::raw("<!-- WARNING: AsyncCss File not fouit lnd ($path) -->");
+    // Resolve webroot
+    $webroot = Craft::getAlias('@webroot');
+
+    // Alert in the source if there's no file
+    if (!$path || !file_exists($webroot . '/' . ltrim($path, '/')))
+      return Template::raw("<!-- WARNING: AsyncCss File not found ($path) -->");
 
     // Check if the sheet has already been included
-    if(in_array(CRAFT_BASE_PATH . '/web/' . $path, $this->sheetsOnPage))
+    if (in_array($webroot . '/' . ltrim($path, '/'), $this->sheetsOnPage))
       return false;
 
     // Add the sheet to the list
-    $this->sheetsOnPage[] = CRAFT_BASE_PATH . '/web/' . $path;
+    $this->sheetsOnPage[] = $webroot . '/' . ltrim($path, '/');
 
 
     // Base attributes
@@ -61,13 +64,13 @@ class AsyncCssVariable {
 
     $lines = [];
 
-    // Clean up the path if necessary
-    $path = ltrim($path, '/');
+  // Clean up the path if necessary
+  $path = ltrim($path, '/');
 
     // Add a version query string.
-    if($cached) {
-      if(file_exists(CRAFT_BASE_PATH . '/web/' . $path)) {
-        $path = $path . '?v=' .filemtime(CRAFT_BASE_PATH . '/web/' . $path);
+    if ($cached) {
+      if (file_exists($webroot . '/' . $path)) {
+        $path = $path . '?v=' . filemtime($webroot . '/' . $path);
       }
     }
 
@@ -79,17 +82,17 @@ class AsyncCssVariable {
       ];
     }
 
-    // Re-add the /
-    $path = '/'.$path;
+  // Re-add the /
+  $path = '/'.$path;
 
     // Add the base script file
-    $lines[] = HTML::cssFile($path, array_merge($rel, $media));
+    $lines[] = Html::cssFile($path, array_merge($rel, $media));
 
     // <noscript> fallback
-    if($async) {
-      $lines[] = HTML::cssFile($path, array_merge($rel, ['noscript' => true]));
+    if ($async) {
+      $lines[] = Html::cssFile($path, array_merge($rel, ['noscript' => true]));
     }
 
-    return TEMPLATE::raw(HTML::decode(implode("\r\n", $lines)));
+    return Template::raw(Html::decode(implode("\r\n", $lines)));
   }
 }
